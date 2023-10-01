@@ -1,5 +1,7 @@
 package project.javafxbrowser;
 
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -76,8 +79,10 @@ public class Browser extends Application {
     private void setUpHomeButton() {
         home = new Button();
         home.setStyle(buttonStyle);
+        ImageView homeImage = new ImageView(Paths.get("src/pictures/home.png")
+                .toUri().toString());
 
-        ImageView homeImage = new ImageView("C:\\Users\\zhang\\eclipse-workspace\\javafxBrowser\\src\\application\\home.png");
+
         homeImage.setFitHeight(23);
         homeImage.setFitWidth(23);
 
@@ -93,7 +98,8 @@ public class Browser extends Application {
         refresh = new Button();
         refresh.setStyle(buttonStyle);
 
-        ImageView refreshImage = new ImageView("C:\\Users\\zhang\\eclipse-workspace\\javafxBrowser\\src\\application\\refresh.png");
+        ImageView refreshImage = new ImageView(Paths.get("src/pictures/refresh.png")
+                .toUri().toString());
         refreshImage.setFitHeight(23);
         refreshImage.setFitWidth(23);
 
@@ -106,7 +112,8 @@ public class Browser extends Application {
         forward = new Button();
         forward.setStyle(buttonStyle);
 
-        ImageView forwardImage = new ImageView("C:\\Users\\zhang\\eclipse-workspace\\javafxBrowser\\src\\application\\forward.png");
+        ImageView forwardImage = new ImageView(Paths.get("src/pictures/forward.png")
+                .toUri().toString());
         forwardImage.setFitHeight(23);
         forwardImage.setFitWidth(23);
 
@@ -119,7 +126,8 @@ public class Browser extends Application {
         backward = new Button();
         backward.setStyle(buttonStyle);
 
-        ImageView backwardImage = new ImageView("C:\\Users\\zhang\\eclipse-workspace\\javafxBrowser\\src\\application\\backward.png");
+        ImageView backwardImage = new ImageView(Paths.get("src/pictures/backward.png")
+                .toUri().toString());
         backwardImage.setFitHeight(23);
         backwardImage.setFitWidth(23);
 
@@ -172,9 +180,8 @@ public class Browser extends Application {
                 String time = TimeFormat.format(new Date());
                 String today = DateFormat.format(new Date());
 
-                Platform.runLater(() -> {
-                    this.setDateTime(time, today);
-                });
+                Platform.runLater(() ->
+                        this.setDateTime(time, today));
             }
         });
         timerThread.start();
@@ -207,7 +214,7 @@ public class Browser extends Application {
             link = link.replaceAll("https://", "");
         }
 
-        if (link.contains("http://")) {
+        if (link.contains("https://")) {
             link = link.replaceAll("http://", "");
         }
 
